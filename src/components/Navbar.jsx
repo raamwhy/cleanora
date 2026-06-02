@@ -20,7 +20,7 @@ function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b transition duration-300 ${
         isScrolled
           ? 'border-sky-100 bg-white/90 shadow-sm backdrop-blur-xl'
           : 'border-transparent bg-white/75 backdrop-blur-md'
