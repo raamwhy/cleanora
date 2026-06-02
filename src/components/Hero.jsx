@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, MessageCircle, Sparkles } from 'lucide-react';
-import cleanImage from '../../images/clean.webp';
+import cleanImage from '../../images/clean.png';
 import { stats, whatsappLink } from '../data/siteData.js';
 import { fadeUp } from '../utils/animations.js';
 

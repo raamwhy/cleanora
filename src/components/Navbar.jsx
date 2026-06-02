@@ -1,30 +1,16 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Home, Menu, MessageCircle, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { navLinks, whatsappLink } from '../data/siteData.js';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const closeMenu = () => setIsOpen(false);
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition duration-300 ${
-        isScrolled
-          ? 'border-sky-100 bg-white/90 shadow-sm backdrop-blur-xl'
-          : 'border-transparent bg-white/75 backdrop-blur-md'
-      }`}
+      className="fixed inset-x-0 top-0 z-50 border-b border-sky-100 bg-white shadow-sm transition duration-300"
     >
       <nav className="container-section flex h-20 items-center justify-between">
         <a
