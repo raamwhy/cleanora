@@ -17,7 +17,7 @@ function Hero() {
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy via-navy/82 to-navy/25" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy/78 via-transparent to-navy/18" />
 
-      <div className="container-section relative flex min-h-svh flex-col justify-center pb-8 pt-28 sm:pb-10 sm:pt-32 lg:min-h-[720px] lg:pb-12">
+      <div className="container-section relative flex min-h-[100svh] flex-col justify-center pb-8 pt-28 sm:pb-10 sm:pt-32 lg:min-h-screen lg:pb-12">
         <div className="max-w-3xl py-10 sm:py-14 lg:py-16">
           <motion.div
             variants={fadeUp}

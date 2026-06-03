@@ -1,24 +1,47 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Home, Menu, MessageCircle, X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { navLinks, whatsappLink } from '../data/siteData.js';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const isSolid = isScrolled || isOpen;
 
   const closeMenu = () => setIsOpen(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 24);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <header
-      className="fixed inset-x-0 top-0 z-50 border-b border-sky-100 bg-white shadow-sm transition duration-300"
+      className={`fixed inset-x-0 top-0 z-50 border-b transition duration-300 ${
+        isSolid
+          ? 'border-sky-100 bg-white shadow-sm'
+          : 'border-white/10 bg-transparent'
+      }`}
     >
       <nav className="container-section flex h-20 items-center justify-between">
         <a
           href="#beranda"
-          className="flex items-center gap-2.5 text-2xl font-extrabold tracking-normal text-navy"
+          className={`flex items-center gap-2.5 text-2xl font-extrabold tracking-normal transition duration-300 ${
+            isSolid ? 'text-navy' : 'text-white'
+          }`}
           onClick={closeMenu}
         >
-          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-mint text-white shadow-card">
+          <span
+            className={`flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-mint text-white transition duration-300 ${
+              isSolid ? 'shadow-card' : 'shadow-[0_14px_35px_rgba(15,23,42,0.22)]'
+            }`}
+          >
             <Home className="h-5 w-5" />
           </span>
           <span>
@@ -31,7 +54,11 @@ function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-semibold text-brandSlate transition hover:text-primaryDark"
+              className={`text-sm font-semibold transition duration-300 ${
+                isSolid
+                  ? 'text-brandSlate hover:text-primaryDark'
+                  : 'text-sky-50/90 hover:text-white'
+              }`}
             >
               {item.label}
             </a>
@@ -45,7 +72,11 @@ function Navbar() {
 
         <motion.button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-sky-100 text-navy transition hover:bg-softBlue lg:hidden"
+          className={`inline-flex h-11 w-11 items-center justify-center rounded-2xl border transition duration-300 lg:hidden ${
+            isSolid
+              ? 'border-sky-100 text-navy hover:bg-softBlue'
+              : 'border-white/20 bg-white/10 text-white backdrop-blur-md hover:bg-white/18'
+          }`}
           aria-label={isOpen ? 'Tutup menu' : 'Buka menu'}
           aria-expanded={isOpen}
           onClick={() => setIsOpen((value) => !value)}
