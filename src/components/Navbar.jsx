@@ -26,7 +26,7 @@ function Navbar() {
       className={`fixed inset-x-0 top-0 z-50 border-b transition duration-300 ${
         isSolid
           ? 'border-sky-100 bg-white shadow-sm'
-          : 'border-white/10 bg-transparent'
+          : 'border-transparent bg-transparent'
       }`}
     >
       <nav className="container-section flex h-20 items-center justify-between">
